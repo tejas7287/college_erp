@@ -1,0 +1,13 @@
+<odoo>
+    <menuitem id="college_root" name="College ERP"/>
+
+    <menuitem id="menu_students"
+              name="Students"
+              parent="college_root"
+              action="action_students"/>
+
+    <menuitem id="menu_courses"
+              name="Courses"
+              parent="college_root"
+              action="action_courses"/>
+</odoo>
