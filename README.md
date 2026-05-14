@@ -1,70 +1,114 @@
 # College ERP
 
-**Version:** 1.0  
-**Category:** Education  
-**License:** LGPL-3  
-**Author:** Tejas
+![Version](https://img.shields.io/badge/version-1.0-blue)
+![Category](https://img.shields.io/badge/category-Education-green)
+![License](https://img.shields.io/badge/license-LGPL-3-orange)
+![Type](https://img.shields.io/badge/type-Application-purple)
+
+| | |
+|---|---|
+| **Name** | College ERP |
+| **Version** | 1.0 |
+| **Category** | Education |
+| **Author** | Tejas |
+| **License** | LGPL-3 |
+| **Application** | Yes |
 
 ## Description
 
 College Management System
 
-## Features
+## Functionality
 
-- Odoo 19.0 compatible
-- Standalone application
-- College Management System
+### Models & Fields
+
+#### `college.course` — College Course
+
+**File:** `models/course.py`
+
+**Fields:**
+
+| Field | Type |
+|-------|------|
+| `name` | `Char` |
+| `code` | `Char` |
+| `duration` | `Integer` |
+| `student_ids` | `One2many` |
+| `active` | `Boolean` |
+
+#### `college.student` — College Student
+
+**File:** `models/student.py`
+
+**Inherits:** `mail.thread`, `mail.activity.mixin`
+
+**Fields:**
+
+| Field | Type |
+|-------|------|
+| `name` | `Char` |
+| `student_id` | `Char` |
+| `phone` | `Char` |
+| `email` | `Char` |
+| `admission_date` | `Date` |
+| `course_id` | `Many2one` |
+| `active` | `Boolean` |
+
+### Views & UI
+
+**Form Views:** `course_views.xml`, `student_views.xml`
+
+**List/Tree Views:** `course_views.xml`, `student_views.xml`
+
+**Menus:** `menu.xml`
+
+### Security
+
+**Access Rights:** 2 model access rules defined
+
+| Model |
+|-------|
+| `college.student` |
+| `college.course` |
 
 ## Dependencies
 
-This module depends on the following Odoo modules:
+| Module | Type |
+|--------|------|
+| `base` | Odoo Core |
+| `mail` | Odoo Core |
 
-- `base`
-- `mail`
-
-## Installation
-
-1. Clone this repository into your Odoo addons directory:
-   ```bash
-   git clone https://github.com/tejas7287/college_erp.git
-   ```
-
-2. Add the module path to your Odoo configuration file (`odoo.conf`):
-   ```
-   addons_path = /path/to/odoo/addons,/path/to/college_erp
-   ```
-
-3. Restart the Odoo server:
-   ```bash
-   sudo systemctl restart odoo
-   ```
-
-4. Go to **Apps** → **Update Apps List** → Search for **"College ERP"** → Click **Install**
-
-## Module Structure
+## File Structure
 
 ```
 college_erp/
+├── LICENSE
+├── README.md
 ├── __init__.py
 ├── __manifest__.py
 ├── models/
+│   ├── __init__.py
+│   ├── course.py
+│   └── student.py
 ├── security/
+│   └── ir.model.access.csv
 ├── static/
-├── views/
+│   └── description/
+│       └── icon.png
+└── views/
+    ├── course_views.xml
+    ├── menu.xml
+    └── student_views.xml
 ```
 
-## Configuration
+## Installation
 
-After installation, configure the module through Odoo's Settings menu or the module's specific configuration options.
+This module is part of the **[odoo-hr-education-finance-suite](https://github.com/tejas7287/odoo-hr-education-finance-suite)** suite.
+
+1. Place this module in your Odoo addons directory
+2. Update the apps list: **Settings** → **Apps** → **Update Apps List**
+3. Search for **"College ERP"** and click **Install**
 
 ## License
 
-This project is licensed under the LGPL-3 License.
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+LGPL-3
